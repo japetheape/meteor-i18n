@@ -3,6 +3,7 @@
   author: Hubert OG <hubert@orlikarnia.com>
 */
 
+Anti = {};
 
 var maps            = {};
 var language        = '';
@@ -15,7 +16,7 @@ var dep             = new Deps.Dependency();
 /*
   Convert key to internationalized version
 */
-i18n = function() {
+Anti.i18n = function() {
   dep.depend();
 
   var label;
@@ -23,13 +24,13 @@ i18n = function() {
 
   /* remove extra parameter added by blaze */
   if(typeof args[args.length-1] === 'object') {
-    args.pop(); 
+    args.pop();
   }
 
   var label = args[0];
   args.shift();
 
-  
+
   if(typeof label !== 'string') return '';
   var str = (maps[language] && maps[language][label]) ||
          (maps[defaultLanguage] && maps[defaultLanguage][label]) ||
@@ -45,11 +46,11 @@ i18n = function() {
 if(Meteor.isClient) {
   if(UI) {
     UI.registerHelper('i18n', function () {
-      return i18n.apply(this, arguments);
+      return Anti.i18n.apply(this, arguments);
     });
   } else if(Handlebars) {
     Handlebars.registerHelper('i18n', function () {
-      return i18n.apply(this, arguments);
+      return Anti.i18n.apply(this, arguments);
     });
   }
 }
@@ -67,22 +68,22 @@ function replaceWithParams(string, params) {
 /*
   Settings
 */
-i18n.setLanguage = function(lng) {
+Anti.i18n.setLanguage = function(lng) {
   language = lng;
   dep.changed();
 };
 
-i18n.setDefaultLanguage = function(lng) {
+Anti.i18n.setDefaultLanguage = function(lng) {
   defaultLanguage = lng;
   dep.changed();
 };
 
-i18n.getLanguage = function() {
+Anti.i18n.getLanguage = function() {
   dep.depend();
   return language;
 };
 
-i18n.showMissing = function(template) {
+Anti.i18n.showMissing = function(template) {
   if(template) {
     if(typeof template === 'string') {
       missingTemplate = template;
@@ -99,7 +100,7 @@ i18n.showMissing = function(template) {
 /*
   Register map
 */
-i18n.map = function(language, map) {
+Anti.i18n.map = function(language, map) {
   if(!maps[language]) maps[language] = {};
   registerMap(language, '', false, map);
   dep.changed();
@@ -115,4 +116,3 @@ var registerMap = function(language, prefix, dot, map) {
     });
   }
 };
-

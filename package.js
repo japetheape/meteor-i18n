@@ -8,7 +8,7 @@ Package.describe({
 Package.on_use(function (api, where) {
   api.versionsFrom('0.9.0');
   api.use(['underscore', 'ui', 'deps'], ['client', 'server']);
-  api.export('i18n', ['client', 'server']);
+  api.export('Anti', ['client', 'server']);
   api.add_files('i18n.js', ['client', 'server']);
 });
 
@@ -18,4 +18,3 @@ Package.on_use(function (api, where) {
 //   api.add_files(['tests/client/i18n.js', 'tests/client/i18n.html'], ['client']);
 
 // });
-
