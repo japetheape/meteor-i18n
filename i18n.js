@@ -13,6 +13,8 @@ var showMissing     = false;
 var dep             = new Deps.Dependency();
 
 
+
+
 /*
   Convert key to internationalized version
 */
@@ -40,6 +42,30 @@ Anti.i18n = function() {
   return str;
 };
 
+
+/*
+  Anti.i18n but with language as first param
+*/
+Anti.i18nWithLanguage = function() {
+
+  // var label;r
+  var args = _.toArray(arguments);
+
+  var localLanguage= args[0];
+  var label = args[1];
+  args.shift();
+  args.shift();
+
+
+  if(typeof label !== 'string') return '';
+    var str = (maps[localLanguage] && maps[localLanguage][label]) ||
+         (maps[defaultLanguage] && maps[defaultLanguage][label]) ||
+         (showMissing && _.template(missingTemplate, {language: localLanguage, defaultLanguage: defaultLanguage, label: label})) ||
+         '';
+
+  str = replaceWithParams(str, args)
+  return str;
+};
 /*
   Register handlebars helper
 */
