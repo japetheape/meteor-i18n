@@ -1,7 +1,7 @@
 Package.describe({
   name:     'japetheape:i18n',
-  version:  '0.5',
-  summary:  'Internalization: simplest package',
+  version:  '0.5.0',
+  summary:  'Internalization: simplest package, clone of anti:18n, props to them!',
   git:      'https://github.com/japetheape/meteor-i18n.git',
 });
 
