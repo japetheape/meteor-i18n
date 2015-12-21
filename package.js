@@ -1,8 +1,8 @@
 Package.describe({
-  name:     'anti:i18n',
-  version:  '0.4.3',
+  name:     'japetheape:i18n',
+  version:  '0.5',
   summary:  'Internalization: simplest package',
-  git:      'https://github.com/anticoders/meteor-i18n.git',
+  git:      'https://github.com/japetheape/meteor-i18n.git',
 });
 
 Package.on_use(function (api, where) {
